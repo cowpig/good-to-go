@@ -1,0 +1,53 @@
+28.sgf
+
+jvds gives the League tournament table
+
+                            1     2     3     4     5     6     7     8    Tot
+1. Kato Masao, 7 dan        -     1     0     0     1     1*    0     1     4    
+2. Ohira Shuzo, 9 dan       0     -     1     0     1     0     0     0     2     
+3. Sakakibara Shoji, 9 dan  1     0     -     0     1     0     0     0     2
+4. Rin Kaiho, Meijin        1*    1*    1*    -     1*    0     1*    1     6     
+5. Hane Yasumasa, 8 dan     0     0     0     0     -     1     0     0     1
+6. Takemiya Masaki, 7 dan   0     1*    1     1*    0     -     1*    1     5
+7. Sakata Eio, Judan        1*    1*    1*    0     1     0     -     1*    5     
+8. Fujisawa Hosai, 9 dan    0     1     1     0.    1     0     0     -     3
+
+but no black/white information is known
+
+The starred games are present (13 games)
+The dotted game has B/W info (1 game)
+
+
+These 13 are
+
+1972  28th Honinbo  League  123  B+R  Sakata Eio  Fujisawa Hosai  06.sgf
+1972-11-15,16  28th Honinbo  League  209  B+R  Rin Kaiho  Ohira Shuzo  09.sgf
+1972-12-06  28th Honinbo  League  172  W+R  Kato Masao  Rin Kaiho  02.sgf
+1973-01-17  28th Honinbo  League    223  B+R  Takemiya Masaki  Rin Kaiho  07.sgf
+1973-02-07,08  28th Honinbo  League  241  B+R  Sakata Eio  Kato Masao  11.sgf
+1973-02-21,22  28th Honinbo  League  147  B+R  Rin Kaiho  Hane Yasumasa  01.sgf
+1973-03-07,08  28th Honinbo  League  185  B+R  Takemiya Masaki  Ohira Shuzo  08.sgf
+1973-03-21,22  28th Honinbo  League  290  B+23.5  Takemiya Masaki  Sakata Eio  03.sgf
+1973-03-28,29  28th Honinbo  League  177  B+R  Sakata Eio  Sakakibara Shoji  12.sgf
+1973-04-18  28th Honinbo  League  185  B+R  Kato Masao  Takemiya Masaki  05.sgf
+1973-04-18,19  28th Honinbo  League  220  B+2.5  Rin Kaiho  Sakata Eio  04.sgf
+1973-04-25,26  28th Honinbo  League  202  W+R  Sakakibara Shoji  Rin Kaiho  10.sgf
+1973-04-25,26  28th Honinbo  League  40  W+R  Ohira Shuzo  Sakata Eio  13.sgf
+
+This 1 is
+
+1973-03-07,08  28th Honinbo  League  310  W+R  Fujisawa Hosai  Rin Kaiho  28.sgf
+
+There is also a conflicting
+
+1973-03-14,15  28th Honinbo  League  91  B+R  Sakakibara Shoji  Sakata Eio  X.sgf
+
+The Ohira vs Sakata game looks like it is shifted down by one position.
+
+
+top 4:
+Rin Kaiho, Takemiya Masaki, Sakata Eio, Kato Masao (numbers 1,4,7,2 in the pattern)
+demoted:
+Hane Yasumasa, Sakakibara Shoji, Ohira Shuzo, Fujisawa Hosai
+
+27th league top 4: Rin Kaiho, Sakata Eio, Fujisawa Hosai, Kato Masao
