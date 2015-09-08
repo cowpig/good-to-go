@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Good to Go</title>
+    <script type="text/javascript" src="wgo/wgo/wgo.js"></script>
+    <style type="text/css"></style>
+  <body>
+    <div style="display: block; margin: auto; width: 600px;">
+      <div id="board">
+        <!-- board will go here -->
+      </div>
+      <button id="playnext" style="display: block; height:60px; width: 140px; margin-top: 10px; margin-left: auto; margin-right: auto;">
+        Play Next Move
+      </button>
+    </div>
+    <script>
+    document.getElementById("playnext").disabled = true;
+    xmlhttpLoad = new XMLHttpRequest();
+    xmlhttpLoad.onreadystatechange=function() {
+      if (xmlhttpLoad.readyState==4 && xmlhttpLoad.status==200) {
+        document.getElementById("playnext").disabled = false;
+      }
+    }
+    xmlhttpLoad.open("GET", "http://localhost:8080/?method=newboard&size=9", true);
+    xmlhttpLoad.send();
+
+    var board = new WGo.Board(document.getElementById("board"), {
+      width: 600,
+      size: 9,
+      section: {
+        top: -0.5,
+        left: -0.5,
+        right: -0.5,
+        bottom: -0.5,
+      }
+    });
+
+    var game = new WGo.Game(9);
+
+  // WGo.Board.DrawHandler which draws coordinates
+  var coordinates = {
+    // draw on grid layer
+    grid: {
+      draw: function(args, board) {
+        var ch, t, xright, xleft, ytop, ybottom;
+        
+        this.fillStyle = "rgba(0,0,0,0.7)";
+        this.textBaseline="middle";
+        this.textAlign="center";
+        this.font = board.stoneRadius+"px "+(board.font || "");
+        
+        xright = board.getX(-0.75);
+        xleft = board.getX(board.size-0.25);
+        ytop = board.getY(-0.75);
+        ybottom = board.getY(board.size-0.25);
+        
+        for(var i = 0; i < board.size; i++) {
+          ch = i+"A".charCodeAt(0);
+          if(ch >= "I".charCodeAt(0)) ch++;
+          
+          t = board.getY(i);
+          this.fillText(board.size-i, xright, t);
+          this.fillText(board.size-i, xleft, t);
+          
+          t = board.getX(i);
+          this.fillText(String.fromCharCode(ch), t, ytop);
+          this.fillText(String.fromCharCode(ch), t, ybottom);
+        }
+        
+        this.fillStyle = "black";
+      }
+    }
+  }
+  
+  board.addCustomObject(coordinates);
+
+  function makeNextMove(x,y) {
+    var color = game.turn;
+    var playReturn = game.play(x,y);
+    switch(playReturn) {
+      case false:
+        alert("Terrible code.");
+        break;
+      case 1:
+        alert("Given coordinates are not on board.");
+        break;
+      case 2:
+        alert("There is already a stone on the given coordinates.");
+        break;
+      case 3:
+        alert("Move is suicide.");
+        break;
+      case 4:
+        alert("Repeating a position is not allowed.");
+        break;
+      default:
+        board.addObject({
+          x: x,
+          y: y,
+          c: color
+        });
+        var captured = playReturn;
+        for (var i=0; i<captured.length; i++) {
+          var stonePosition = captured[i]
+          board.removeObjectsAt(stonePosition.x, stonePosition.y);
+        }
+      break;
+    }
+  }
+
+  board.addEventListener("click", function(x, y) {
+    makeNextMove(x,y);
+  });
+
+  var playNextButton = document.getElementById("playnext");
+  playNextButton.addEventListener("click", function() {
+    document.getElementById("playnext").disabled = true;
+    xmlhttp = new XMLHttpRequest();
+    var colorString;
+    if (game.turn == WGo.B) {
+      colorString = "black";
+    } else {
+      colorString = "white";
+    }
+    xmlhttp.onreadystatechange=function() {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+        var response = xmlhttp.responseText;
+        var responseJSON = JSON.parse(response); // asynchronous server response
+        makeNextMove(parseInt(responseJSON.x), parseInt(responseJSON.y));
+        document.getElementById("playnext").disabled = false;
+      }
+    }
+    xmlhttp.open("GET", "http://localhost:8080/?method=getmove&color=" + colorString, true);
+    xmlhttp.send();
+  });
+
+  </script>
+</body>
+</html>
