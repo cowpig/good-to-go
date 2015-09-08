@@ -400,6 +400,10 @@ board_print(struct board *board, FILE *f)
 	board_print_custom(board, f, DEBUGL(6) ? cprint_group : NULL);
 }
 
+void board_print_stderr(struct board *board)
+{
+   board_print(board, stderr);
+}
 
 #ifdef BOARD_TRAITS
 

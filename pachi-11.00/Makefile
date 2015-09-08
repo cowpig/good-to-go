@@ -68,7 +68,7 @@ ifdef MAC
 else
 	SYS_CFLAGS?=-march=native
 	SYS_LDFLAGS?=-pthread -rdynamic
-	SYS_LIBS?=-lm -lrt -ldl
+	SYS_LIBS?=-lm -ldl
 endif
 endif
 
@@ -113,6 +113,16 @@ LOCALLIBS=random/random.a replay/replay.a patternscan/patternscan.a patternplay/
 $(LOCALLIBS): all-recursive
 	@
 pachi: $(OBJS) pachi.o $(LOCALLIBS)
+	$(call cmd,link)
+
+test:
+	python pypachi.py
+
+all:libpachi.dylib test
+
+libpachi.dylib:CUSTOM_LDFLAGS+=-dylib
+
+libpachi.dylib:$(OBJS) pachi.o $(LOCALLIBS)
 	$(call cmd,link)
 
 # Use runtime gcc profiling for extra optimization. This used to be a large

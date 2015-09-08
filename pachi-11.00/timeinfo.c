@@ -28,6 +28,17 @@
  * in sudden death and 1.1 times in byoyomi. */
 #define MAX_SUDDEN_DEATH_RATIO 2.0
 #define MAX_BYOYOMI_TIME_RATIO 1.1
+struct time_info* time_info_init(void) {
+	struct time_info ti_default = { .period = TT_NULL };
+   struct time_info *ti = malloc(sizeof(*ti));
+   if(ti)
+      *ti = ti_default;
+   return ti;
+}
+
+void *time_info_destroy(struct time_info* ti) {
+   free(ti);
+}
 
 bool
 time_parse(struct time_info *ti, char *s)

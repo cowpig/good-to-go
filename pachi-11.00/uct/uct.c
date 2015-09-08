@@ -157,7 +157,7 @@ uct_printhook_ownermap(struct board *board, coord_t c, char *s, char *end)
 	return s;
 }
 
-static char *
+char *
 uct_notify_play(struct engine *e, struct board *b, struct move *m, char *enginearg)
 {
 	struct uct *u = e->data;
@@ -294,7 +294,7 @@ playout_policy_done(struct playout_policy *p)
 	free(p);
 }
 
-static void
+void
 uct_stop(struct engine *e)
 {
 	/* This is called on game over notification. However, an undo
@@ -304,7 +304,7 @@ uct_stop(struct engine *e)
 	uct_pondering_stop(u);
 }
 
-static void
+void
 uct_done(struct engine *e)
 {
 	/* This is called on engine reset, especially when clear_board
@@ -480,7 +480,7 @@ uct_genmove_setup(struct uct *u, struct board *b, enum stone color)
 	}
 }
 
-static coord_t *
+coord_t *
 uct_genmove(struct engine *e, struct board *b, struct time_info *ti, enum stone color, bool pass_all_alive)
 {
 	double start_time = time_now();

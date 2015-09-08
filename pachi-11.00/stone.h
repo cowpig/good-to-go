@@ -2,11 +2,12 @@
 #define PACHI_STONE_H
 
 enum stone {
-	S_NONE,
+	S_NONE = 0,
 	S_BLACK,
 	S_WHITE,
 	S_OFFBOARD,
 	S_MAX,
+   _S_MAX = 0x7fffffff
 };
 
 static char stone2char(enum stone s);
