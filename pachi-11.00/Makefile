@@ -126,6 +126,7 @@ DEXT=$($(UNAME)_DEXT)
 all:libpachi$(DEXT) test
 
 libpachi.dylib:CUSTOM_LDFLAGS+=-dylib
+libpachi.so:CUSTOM_LDFLAGS+=-shared
 
 libpachi$(DEXT):$(OBJS) pachi.o $(LOCALLIBS)
 	$(call cmd,link)
