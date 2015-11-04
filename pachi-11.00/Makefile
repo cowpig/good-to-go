@@ -119,10 +119,13 @@ test:
 	python pypachi.py
 
 all:libpachi.dylib test
-
+UNAME=$(shell uname)
+Linux_DEXT=.so
+Darwin_DEXT=.dylib
+DEXT=$($(UNAME)_DEXT)
 libpachi.dylib:CUSTOM_LDFLAGS+=-dylib
 
-libpachi.dylib:$(OBJS) pachi.o $(LOCALLIBS)
+libpachi$(DEXT):$(OBJS) pachi.o $(LOCALLIBS)
 	$(call cmd,link)
 
 # Use runtime gcc profiling for extra optimization. This used to be a large
