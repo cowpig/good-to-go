@@ -49,7 +49,13 @@ ffi.cdef("""
 #   C.board_print_stderr(board)
 
 move = ffi.new("struct move*")
-C = ffi.dlopen("libpachi.dylib")                     # loads the entire C namespace
+C = None
+try:
+   C = ffi.dlopen("libpachi.so")         # loads the entire C namespace
+except:
+   print("trying osx")
+if C == None:
+   C = ffi.dlopen("libpachi.dylib")      # loads the entire C namespace
 null_cstr = ffi.cast("char*", 0)
 board = C.board_init(null_cstr)
 size = 9
