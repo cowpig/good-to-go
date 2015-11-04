@@ -118,11 +118,13 @@ pachi: $(OBJS) pachi.o $(LOCALLIBS)
 test:
 	python pypachi.py
 
-all:libpachi.dylib test
 UNAME=$(shell uname)
 Linux_DEXT=.so
 Darwin_DEXT=.dylib
 DEXT=$($(UNAME)_DEXT)
+
+all:libpachi$(DEXT) test
+
 libpachi.dylib:CUSTOM_LDFLAGS+=-dylib
 
 libpachi$(DEXT):$(OBJS) pachi.o $(LOCALLIBS)
