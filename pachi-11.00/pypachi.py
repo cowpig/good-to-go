@@ -51,8 +51,11 @@ ffi.cdef("""
 move = ffi.new("struct move*")
 C = None
 try:
+   import os
+   print os.path.exists(os.path.join(os.getcwd(), "libpachi.so"))
    C = ffi.dlopen("libpachi.so")         # loads the entire C namespace
-except:
+except Exception as e:
+   print e
    print("trying osx")
 if C == None:
    C = ffi.dlopen("libpachi.dylib")      # loads the entire C namespace

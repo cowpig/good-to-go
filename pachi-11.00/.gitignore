@@ -2,6 +2,7 @@
 .*.swp
 *.o
 *.a
+*.so
 pachi
 tags
 book.dat
